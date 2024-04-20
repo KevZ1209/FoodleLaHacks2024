@@ -1,9 +1,49 @@
 <script>
+    import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
+
     let intervalID = setInterval(updateTime, 1000);
 
     let totalSecs = 0
     function updateTime() {
         totalSecs += 1
+    }
+
+    const bigMacNutrition = {
+        "size": 240,
+        "calories": 470,
+        "protein": 26,
+        "carbs": 46,
+        "fat": 20,
+        "sat_fat": 5,
+        "trans_fat": 0,
+        "cholesterol": 70,
+        "fiber": 1,
+        "sugar": 9,
+        "added_sugar": 7,
+        "vitamin_d": 0,
+        "calcium": 30,
+        "iron": 2,
+        "potassium": 420,
+        "sodium": 1140
+    }
+
+    const quarterPounder = {
+        "size": 200,
+        "calories": 520,
+        "protein": 30,
+        "carbs": 42,
+        "fat": 26,
+        "sat_fat": 12,
+        "trans_fat": 1.5,
+        "cholesterol": 95,
+        "fiber": 2,
+        "sugar": 10,
+        "added_sugar": 8,
+        "vitamin_d": 0,
+        "calcium": 190,
+        "iron": 4,
+        "potassium": 420,
+        "sodium": 1140
     }
 
     function convertTime(secs) {
@@ -44,7 +84,11 @@
         />
 
         <div class="sm:w-1/4 w-full text-3xl jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center">{convertTime(totalSecs)}</div>
-        
+
     </div>
+
+    <NutritionalLabel nutritionData={bigMacNutrition}/>
+
+
       
 </div>
