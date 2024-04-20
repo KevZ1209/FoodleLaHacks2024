@@ -1,49 +1,14 @@
 <script>
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
+    import fuzzysort from 'fuzzysort'
+    
+    export let data;
 
     let intervalID = setInterval(updateTime, 1000);
 
     let totalSecs = 0
     function updateTime() {
         totalSecs += 1
-    }
-
-    const bigMacNutrition = {
-        "size": 240,
-        "calories": 470,
-        "protein": 26,
-        "carbs": 46,
-        "fat": 20,
-        "sat_fat": 5,
-        "trans_fat": 0,
-        "cholesterol": 70,
-        "fiber": 1,
-        "sugar": 9,
-        "added_sugar": 7,
-        "vitamin_d": 0,
-        "calcium": 30,
-        "iron": 2,
-        "potassium": 420,
-        "sodium": 1140
-    }
-
-    const quarterPounder = {
-        "size": 200,
-        "calories": 520,
-        "protein": 30,
-        "carbs": 42,
-        "fat": 26,
-        "sat_fat": 12,
-        "trans_fat": 1.5,
-        "cholesterol": 95,
-        "fiber": 2,
-        "sugar": 10,
-        "added_sugar": 8,
-        "vitamin_d": 0,
-        "calcium": 190,
-        "iron": 4,
-        "potassium": 420,
-        "sodium": 1140
     }
 
     function convertTime(secs) {
@@ -67,6 +32,28 @@
         }
 
     }
+
+    let inputValue = ''
+    console.log(data.foods)
+    let results = ""
+
+    // call fuzzy sort every time it's clicked
+    function handleKeyPress() {
+        console.log("pressed")
+        results = fuzzysort.go(inputValue, data.foods, {key:'name'})
+        console.log("results: " + JSON.stringify(results))
+    }
+    
+    // returns a list of fuzzy sort names
+    function displayChoices(data) {
+        let choices = []
+        if (data.length > 0) {
+            for (let i = 0; i < data.length; i++) {
+                choices.push(data[i]["target"])
+            }
+        }
+        return choices;
+    }
 </script>
 
 <div class="max-w-2xl h-dvh mx-auto text-black p-8 jersey-10-regular">
@@ -81,14 +68,20 @@
         class="jersey-10-regular text-xl sm:w-2/3 w-full bg-gray-200 px-4 leading-tight text-gray-700 caret-gray-500 opacity-90 focus:outline-none h-10 tracking-wider border-t-2 border-l-2 border-r-4 border-b-4 border-black uppercase"
         type="text"
         placeholder="Guess a Food"
+        bind:value="{inputValue}"
+        on:input={handleKeyPress}
         />
 
         <div class="sm:w-1/4 w-full text-3xl jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center">{convertTime(totalSecs)}</div>
 
     </div>
+    
+    <div class="absolute bg-white w-24">
+    {#each displayChoices(results) as food_choice}
+        <p class="uppercase">{food_choice}</p>
+    {/each}
+    </div>
+    <NutritionalLabel nutritionData={data.foods[0]}/>
+    
 
-    <NutritionalLabel nutritionData={bigMacNutrition}/>
-
-
-      
 </div>
