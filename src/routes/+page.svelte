@@ -1,6 +1,7 @@
 <script>
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
     import fuzzysort from 'fuzzysort'
+    import { Svroller } from 'svrollbar'
     
     export let data;
 
@@ -10,6 +11,8 @@
     function updateTime() {
         totalSecs += 1
     }
+
+    let guesses = []
 
     function convertTime(secs) {
         const minutes = Math.floor(secs / 60);
@@ -41,22 +44,48 @@
     function handleKeyPress() {
         console.log("pressed")
         results = fuzzysort.go(inputValue, data.foods, {key:'name'})
-        console.log("results: " + JSON.stringify(results))
     }
     
     // returns a list of fuzzy sort names
-    function displayChoices(data) {
+    function displayChoices(d) {
         let choices = []
-        if (data.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-                choices.push(data[i]["target"])
+
+        // if input is empty, display all foods...
+        if (inputValue == "") {
+            for (let i = 0; i < data.foods.length; i++) {
+                choices.push(data.foods[i].name)
+            }   
+        }
+        
+        else if (d.length > 0) {
+            for (let i = 0; i < d.length; i++) {
+                choices.push(d[i]["target"])
             }
         }
         return choices;
     }
+
+    // Create array that maps food to index
+    let food_to_index = []
+    for (let i=0; i < data.foods.length; i++) {
+        food_to_index.push(data.foods[i]["name"])
+    }
+
+    function handleClickFood(e) {
+        // Get name of food
+        let food_name = e.target.innerHTML
+        let food_index = food_to_index.indexOf(food_name)
+        console.log(data.food)
+        let food_info = data.foods[food_index]
+        guesses = [food_info, ...guesses]
+        console.log("GUESSES: " + guesses)
+    }
+
+
+
 </script>
 
-<div class="max-w-2xl h-dvh mx-auto text-black p-8 jersey-10-regular">
+<div class="max-w-2xl mx-auto text-black p-8 jersey-10-regular">
 	
     <h1 class="jersey-10-regular tracking-wider text-6xl md:w-2/3 w-full">
         NUTRITIONLE
@@ -72,16 +101,24 @@
         on:input={handleKeyPress}
         />
 
-        <div class="sm:w-1/4 w-full text-3xl jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center">{convertTime(totalSecs)}</div>
+        <div class="sm:w-1/4 w-full text-3xl jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center ">{convertTime(totalSecs)}</div>
 
     </div>
     
-    <div class="absolute bg-white w-24">
-    {#each displayChoices(results) as food_choice}
-        <p class="uppercase">{food_choice}</p>
-    {/each}
+    <div class="sm:w-2/3 bg-white border border-black mt-1">
+    <Svroller width="100%">
+        {#each displayChoices(results) as food_choice}
+            <p class="uppercase text-xl p-1 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
+        {/each}
+    </Svroller>
     </div>
-    <NutritionalLabel nutritionData={data.foods[0]}/>
     
+    {#if guesses.length > 0}
+        {#each guesses as g}    
+            <NutritionalLabel nutritionData={g}/>
+        {/each}
+    {/if}
 
+
+      
 </div>
