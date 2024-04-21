@@ -93,6 +93,7 @@
     }
 
     function handleClickFood(e) {
+        scrollIntoView(e)
         if (status > 1) {
             // Get name of food
             let food_name = e.target.innerHTML
@@ -108,6 +109,15 @@
             }
         }
 
+
+    }
+
+    function scrollIntoView({ target }) {
+		const el = document.getElementById("checkpoint");
+		if (!el) return;
+        el.scrollIntoView({
+            behavior: 'smooth'
+        });
     }
 
 </script>
@@ -117,7 +127,7 @@
     <h1 class="jersey-10-regular tracking-wider text-6xl md:w-2/3 w-full">
         NUTRITIONLE
     </h1>
-    <p class="md:w-1/3 w-full my-auto">A nutrition guessing game</p>
+    <p class="md:w-1/3 w-full my-auto">a more nutritional wordle</p>
     
     <div class="flex gap-4 flex-wrap md:flex-nowrap">
         <input
@@ -141,7 +151,7 @@
         </div>
 
         <div class="p-3 md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3 text-xl">
-            AI Hint
+            AI Hint: 
             <HelpfulHint food_item={foodguess["name"]}/>
         </div>
 
@@ -161,7 +171,7 @@
         <Reveal answer={foodguess["name"]} />
         <NutritionalLabel nutritionData={foodguess} defaultData={foodguess} />
     {:else}
-        <NutritionalLabel nutritionData={foodguess} />
+        <NutritionalLabel id="checkpoint" nutritionData={foodguess} />
     {/if}
 
     
