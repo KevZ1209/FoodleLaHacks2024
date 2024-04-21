@@ -132,8 +132,8 @@
 
     </div>
     <div class="flex gap-4 flex-wrap md:flex-nowrap">
-        <div class="md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1">
-        <Svroller width="100%">
+        <div class="md:w-1/3 w-full bg-white max-h-52 border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1">
+        <Svroller width="100%" height="100%">
             {#each displayChoices(results) as food_choice}
                 <p class="uppercase text-xl p-1 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
             {/each}
