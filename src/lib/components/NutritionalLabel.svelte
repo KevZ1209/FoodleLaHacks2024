@@ -98,27 +98,27 @@
             <div class="flex justify-between items-center ps-2 pe-2}">
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_a")}"> -->
                 <p class="mr-2">Vitamin A:</p>
-                <p>{nutritionData.vitamin_a}%<Arrow guess={nutritionData.vitamin_a} real={defaultData.vitamin_a} /></p>
+                <p>{(nutritionData.vitamin_a / VITAMIN_A_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_a / VITAMIN_A_MAX} real={defaultData.vitamin_a / VITAMIN_A_MAX} /></p>
             </div>
             <div class="flex justify-between items-center ps-2 pe-2}">
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_b")}"> -->
                 <p class="mr-2">Vitamin B:</p>
-                <p>{nutritionData.vitamin_b}mg<Arrow guess={nutritionData.vitamin_b} real={defaultData.vitamin_b} /></p>
+                <p>{(nutritionData.vitamin_b / VITAMIN_B_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_b / VITAMIN_B_MAX} real={defaultData.vitamin_b / VITAMIN_C_MAX} /></p>
             </div>
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_c")}"> -->
             <div class="flex justify-between items-center ps-2 pe-2}">
                 <p class="mr-2">Vitamin C:</p>
-                <p>{nutritionData.vitamin_c}mg<Arrow guess={nutritionData.vitamin_c} real={defaultData.vitamin_c} /></p>
+                <p>{(nutritionData.vitamin_c / VITAMIN_C_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_c / VITAMIN_C_MAX} real={defaultData.vitamin_c / VITAMIN_C_MAX} /></p>
             </div>
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_d")}"> -->
             <div class="flex justify-between items-center ps-2 pe-2}">
                 <p class="mr-2">Vitamin D:</p>
-                <p>{nutritionData.vitamin_d}mg<Arrow guess={nutritionData.vitamin_d} real={defaultData.vitamin_d} /></p>
+                <p>{(nutritionData.vitamin_d / VITAMIN_D_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_d / VITAMIN_D_MAX} real={defaultData.vitamin_d / VITAMIN_D_MAX} /></p>
             </div>
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_e")}"> -->
             <div class="flex justify-between items-center ps-2 pe-2}">
                 <p class="mr-2">Vitamin E:</p>
-                <p>{nutritionData.vitamin_e}mg<Arrow guess={nutritionData.vitamin_e} real={defaultData.vitamin_e} /></p>
+                <p>{(nutritionData.vitamin_e / VITAMIN_E_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_e / VITAMIN_E_MAX} real={defaultData.vitamin_e / VITAMIN_E_MAX} /></p>
             </div>
         </div>
         <div class="m-1">
