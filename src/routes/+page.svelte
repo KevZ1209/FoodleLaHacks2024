@@ -6,6 +6,10 @@
     import fuzzysort from 'fuzzysort'
     import { Svroller } from 'svrollbar'
     import { onMount } from "svelte";
+    import Fact from "../lib/components/Fact.svelte";
+    import Export from "../lib/components/Export.svelte";
+    import Import from "../lib/components/Import.svelte";
+    import Food from "../lib/components/Food.svelte";
     
     export let data;
     const MAX_GUESSES = 5;
@@ -161,4 +165,13 @@
         {/each}
     {/if}
 
+    {#if guesses.length > 0}
+        <Fact nutritionData={foodguess} />
+        <Export nutritionData={foodguess} />
+        <Import nutritionData={foodguess} />
+        <Food nutritionData={foodguess} />
+    {/if}
+
+
+      
 </div>
