@@ -24,11 +24,11 @@
         return ans;        
     }
 
-    VITAMIN_A_MAX = 3000;
-    VITAMIN_B_MAX = 2.4;
-    VITAMIN_C_MAX = 90;
-    VITAMIN_D_MAX = 600;
-    VITAMIN_E_MAX = 15;
+    const VITAMIN_A_MAX = 3000;
+    const VITAMIN_B_MAX = 2.4;
+    const VITAMIN_C_MAX = 90;
+    const VITAMIN_D_MAX = 600;
+    const VITAMIN_E_MAX = 15;
 
 </script>
 
