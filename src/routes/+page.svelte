@@ -1,6 +1,7 @@
 <script>
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
     import Reveal from "../lib/components/Reveal.svelte";
+    import Win from "../lib/components/Win.svelte";
     import fuzzysort from 'fuzzysort'
     import { Svroller } from 'svrollbar'
     import { onMount } from "svelte";
@@ -56,7 +57,9 @@
 
     // call fuzzy sort every time it's clicked
     function handleKeyPress() {
-        results = fuzzysort.go(inputValue, data.foods, {key:'name'})
+        if (status > 1) {
+            results = fuzzysort.go(inputValue, data.foods, {key:'name'})
+        }
     }
     
     // returns a list of fuzzy sort names
@@ -85,14 +88,21 @@
     }
 
     function handleClickFood(e) {
-        // Get name of food
-        let food_name = e.target.innerHTML
-        let food_index = food_to_index.indexOf(food_name)
-        let food_info = data.foods[food_index]
-        guesses = [food_info, ...guesses]
-        if (guesses >= MAX_GUESSES) {
-            
+        if (status > 1) {
+            // Get name of food
+            let food_name = e.target.innerHTML
+            let food_index = food_to_index.indexOf(food_name)
+            let food_info = data.foods[food_index]
+            guesses = [food_info, ...guesses]
+            if (guesses.length >= MAX_GUESSES) {
+                status = LOSE
+            }
+            else if (food_name === foodguess.name) {
+                clearInterval(intervalID)
+                status = WIN
+            }
         }
+
     }
 
 </script>
@@ -104,7 +114,7 @@
     </h1>
     <p class="md:w-1/3 w-full my-auto">A nutrition guessing game</p>
     
-    <div class="flex flex-wrap gap-2">
+    <div class="flex gap-5">
         <input
         class="jersey-10-regular text-xl sm:w-2/3 w-full bg-gray-200 px-4 leading-tight text-gray-700 caret-gray-500 opacity-90 focus:outline-none h-10 tracking-wider border-t-2 border-l-2 border-r-4 border-b-4 border-black uppercase"
         type="text"
@@ -113,19 +123,30 @@
         on:input={handleKeyPress}
         />
 
-        <div class="sm:w-1/4 w-full text-3xl jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center ">{convertTime(totalSecs)}</div>
+        <div class="sm:w-1/3 w-full text-3xl bg-white jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center ">{convertTime(totalSecs)}</div>
 
     </div>
+    <div class="flex gap-5">
+        <div class="sm:w-2/3 bg-white border-2 border-black mt-1">
+        <Svroller width="100%">
+            {#each displayChoices(results) as food_choice}
+                <p class="uppercase text-xl p-1 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
+            {/each}
+        </Svroller>
+        </div>
+        <div class="p-3 sm:w-1/3 bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1 text-xl">
+            Guesses Left:
+            <h1 class="text-7xl jersey-10-regular text-center">
+                {MAX_GUESSES - guesses.length}
+            </h1>
+        </div>
+    </div>  
     
-    <div class="sm:w-2/3 bg-white border-t border-l border-r-4 border-b-4 border-black mt-1">
-    <Svroller width="100%">
-        {#each displayChoices(results) as food_choice}
-            <p class="uppercase text-xl p-1 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
-        {/each}
-    </Svroller>
-    </div>
-
-    <Reveal answer={foodguess["name"]}/>
+    {#if status === WIN}
+        <Win timeElapsed={convertTime(totalSecs)}/>
+    {:else if status === LOSE}
+        <Reveal answer={foodguess["name"]} />
+    {/if}
 
     <NutritionalLabel nutritionData={foodguess} />
     

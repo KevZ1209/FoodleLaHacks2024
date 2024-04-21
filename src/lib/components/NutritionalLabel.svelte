@@ -33,14 +33,14 @@
 
 </script>
 
-<div class="border-2 border-black mt-4 border-b-0 ps-3">
+<div class="border-2 border-r-4  border-black mt-4 border-b-0 ps-3">
     {#if (defaultData.name == undefined)}
         <p class="text-black text-4xl">Mystery Food</p>  
     {:else}
         <p class="text-black text-4xl">{nutritionData["name"]}</p>  
     {/if}
 </div>
-<div class="border-2 border-black">
+<div class="border-2 border-black border-r-4 border-b-4">
     <div class="grid grid-cols-3 gap-2 text-xl text-center mb-2">
         <div>
         <!-- <div class={className("calories")}> -->
