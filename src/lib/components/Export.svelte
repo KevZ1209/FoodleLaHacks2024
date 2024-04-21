@@ -22,6 +22,8 @@
                 event.target.style.backgroundColor = 'lightgreen';
             } else {
                 event.target.style.backgroundColor = 'lightcoral';
+                const correctOption = document.getElementById(`optionex-${allAnswers.findIndex(ans => ans === nutritionData.export)}`);
+                correctOption.style.backgroundColor = 'lightgreen';
             }
         }
     }
@@ -40,12 +42,12 @@
     <p class="m-2 text-2xl">Which country is the largest exporter?</p>
     {#if allAnswers.length != 0}
     <div class="grid grid-cols-2 gap-2 text-md text-center">
-        <div id="option-0" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,0)}>{allAnswers[0]}</div>
-        <div id="option-1" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,1)}>{allAnswers[1]}</div>
+        <div id="optionex-0" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,0)}>{allAnswers[0]}</div>
+        <div id="optionex-1" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,1)}>{allAnswers[1]}</div>
     </div>
     <div class="grid grid-cols-2 gap-2 text-md text-center">
-        <div id="option-2" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,2)}>{allAnswers[2]}</div>
-        <div id="option-3" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,3)}>{allAnswers[3]}</div>
+        <div id="optionex-2" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,2)}>{allAnswers[2]}</div>
+        <div id="optionex-3" class="border-2 border-black p-2 m-2" on:mouseenter={(event) => changeHover(event,true)} on:mouseleave={(event) => changeHover(event,false)} on:click={(event) => handleClick(event,3)}>{allAnswers[3]}</div>
     </div>
     {/if}
 </div>
