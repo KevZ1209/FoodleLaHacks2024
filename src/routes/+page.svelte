@@ -165,7 +165,7 @@
         {/each}
     {/if}
 
-    {#if guesses.length > 0}
+    {#if status == 0 || status == 1}
         <Fact nutritionData={foodguess} />
         <Export nutritionData={foodguess} />
         <Import nutritionData={foodguess} />

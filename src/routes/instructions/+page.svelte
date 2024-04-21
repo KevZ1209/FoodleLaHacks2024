@@ -15,6 +15,7 @@
             <li>Try to guess the food in 5 guesses</li>
             <li>Arrows for each category indicates whether your guess was higher, lower or equal</li>
             <li>Have AI generate a hint if neeeded</li>
+            <li>Play bonus questions after</li>
             <li>Have fun!</li>
         </ol>    
     </div>
