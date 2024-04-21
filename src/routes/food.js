@@ -1,4 +1,4 @@
-[
+export const food_data = [
     {
         "name": "Apple",
         "category": "",
