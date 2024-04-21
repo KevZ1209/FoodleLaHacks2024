@@ -103,7 +103,7 @@
             <div class="flex justify-between items-center ps-2 pe-2}">
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_b")}"> -->
                 <p class="mr-2">Vitamin B:</p>
-                <p>{(nutritionData.vitamin_b / VITAMIN_B_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_b / VITAMIN_B_MAX} real={defaultData.vitamin_b / VITAMIN_C_MAX} /></p>
+                <p>{(nutritionData.vitamin_b / VITAMIN_B_MAX * 100).toFixed(2)}%<Arrow guess={nutritionData.vitamin_b / VITAMIN_B_MAX} real={defaultData.vitamin_b / VITAMIN_B_MAX} /></p>
             </div>
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("vitamin_c")}"> -->
             <div class="flex justify-between items-center ps-2 pe-2}">
