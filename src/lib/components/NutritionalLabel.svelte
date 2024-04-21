@@ -33,7 +33,11 @@
 </script>
 
 <div class="border-2 border-black mt-4 border-b-0 ps-3">
-    <p class="text-black text-4xl">{nutritionData["name"]}</p>
+    {#if (defaultData == {})}
+        <p class="text-black text-4xl">Mystery Food</p>  
+    {:else}
+        <p class="text-black text-4xl">{nutritionData["name"]}</p>  
+    {/if}
 </div>
 <div class="border-2 border-black">
     <div class="grid grid-cols-3 gap-4 text-xl text-center mb-2">
@@ -82,7 +86,7 @@
         <div>
             <div class="flex justify-between items-center ps-4 pe-4 class={className("vitamin_a")}">
                 <p class="mr-2">Vitamin A:</p>
-                <p>{nutritionData.vitamin_a}mg<Arrow guess={nutritionData.vitamin_a} real={defaultData.vitamin_a} /></p>
+                <p>{nutritionData.vitamin_a}%<Arrow guess={nutritionData.vitamin_a} real={defaultData.vitamin_a} /></p>
             </div>
             <div class="flex justify-between items-center ps-4 pe-4 class={className("vitamin_b")}">
                 <p class="mr-2">Vitamin B:</p>
