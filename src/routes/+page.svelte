@@ -2,6 +2,7 @@
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
     import Reveal from "../lib/components/Reveal.svelte";
     import Win from "../lib/components/Win.svelte";
+    import HelpfulHint from "../lib/components/HelpfulHint.svelte";
     import fuzzysort from 'fuzzysort'
     import { Svroller } from 'svrollbar'
     import { onMount } from "svelte";
@@ -114,31 +115,35 @@
     </h1>
     <p class="md:w-1/3 w-full my-auto">A nutrition guessing game</p>
     
-    <div class="flex gap-5">
+    <div class="flex gap-4 flex-wrap md:flex-nowrap">
         <input
-        class="jersey-10-regular text-xl sm:w-2/3 w-full bg-gray-200 px-4 leading-tight text-gray-700 caret-gray-500 opacity-90 focus:outline-none h-10 tracking-wider border-t-2 border-l-2 border-r-4 border-b-4 border-black uppercase"
+        class="jersey-10-regular text-xl md:w-2/3 w-full bg-gray-200 px-4 leading-tight text-gray-700 caret-gray-500 opacity-90 focus:outline-none h-10 tracking-wider border-t-2 border-l-2 border-r-4 border-b-4 border-black uppercase"
         type="text"
         placeholder="Guess a Food"
         bind:value="{inputValue}"
         on:input={handleKeyPress}
         />
 
-        <div class="sm:w-1/3 w-full text-3xl bg-white jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center ">{convertTime(totalSecs)}</div>
+        <div class="md:w-1/3 w-full text-3xl bg-white jersey-10-regular h-10 border-t-2 border-l-2 border-r-4 border-b-4 border-black text-center ">{convertTime(totalSecs)}</div>
 
     </div>
-    <div class="flex gap-5">
-        <div class="sm:w-2/3 bg-white border-2 border-black mt-1">
+    <div class="flex gap-4 flex-wrap md:flex-nowrap">
+        <div class="md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1">
         <Svroller width="100%">
             {#each displayChoices(results) as food_choice}
                 <p class="uppercase text-xl p-1 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
             {/each}
         </Svroller>
         </div>
-        <div class="p-3 sm:w-1/3 bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1 text-xl">
+        <div class="p-3 md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1 text-xl">
             Guesses Left:
             <h1 class="text-7xl jersey-10-regular text-center">
                 {MAX_GUESSES - guesses.length}
             </h1>
+        </div>
+        <div class="p-3 md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-1 text-xl">
+            AI Hint
+            <HelpfulHint food_item={foodguess["name"]}/>
         </div>
     </div>  
     
@@ -156,6 +161,4 @@
         {/each}
     {/if}
 
-
-      
 </div>
