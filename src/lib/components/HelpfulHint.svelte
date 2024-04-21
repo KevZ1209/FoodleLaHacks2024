@@ -14,27 +14,35 @@
 
     async function getHint() {
         status = LOADING
-        data = JSON.stringify({text: "steak"})
-        try {
-            let config = {
-                method: 'post',
-                maxBodyLength: Infinity,
-                url: 'https://vtpm0rc0-8000.usw3.devtunnels.ms/hint',
-                headers: { 
-                    'Content-Type': 'application/json', 
-                    'Cookie': '.Tunnels.Relay.WebForwarding.Cookies=CfDJ8E0FHi1JCVNKrny-ARCYWxOdpF4CMAHLgESO2hyDOnM2bsEejIqOA3lW56_0kh-2Fl56WEP2gCF14kyEn14xXJWYzPXzrjiQOy7AMxiuYL9wzxXQAX-k6c-97Tow3huZiGfukjDBhigfDZf4fKeO4wzH2nwgtHC8bYe3d1JbLxJUODwnUME6rs1JLPDljlR56LiABDJV7zdwaU24OolgiAnv2Wc3npeuFjlvN3_wN1rUt7PJGffvBa1Cc7hecVfAoOFoK1DDwkWtxQsjdxjql1ylIC4RjyitbAET88sH6clXOTmQbIOAhUBxByWPeB0fXlevN8l24YrZIbVkgwvtn2m7CKvES1qd3z06NL9CmNM4GkiqDLe5ndAFvrvvkmkw1DhqATY-SFppFDfhHqRPFSH6uIMvm4VQAPWE_v4l34sipXP81vD_u-6oWhPODhjqZRJjaugqCADTf3Efw9WuBdzdR6f8uggLlJIeryx-gpZxZ_8oIJzvnnnariL57nZKDJwf2nmHSW4n2ZMwejvOZDOwoz4GIpJKgbscDVlBJWrUt0fvAnxA425JN9hvmeLlJupDkzZo7AaC0vAdMpVZJN46pGFSBSHN-FY1RyFhQAiy3ctGz9JNGB2V6AFGOdU-n0mt_OFn4EKulTDh-txZivTqu59ZlNWSZ2FOMN_kGSrHkC0Bka4J1GkCSIny7jmG2VG9T-n61I1B5t3_qqZSqROyy4CqY0QAlgTqdMeG5bV1Blv0V1dG3U09HDWGHTVO0H1NDZ-wI9dps14KkYW7KMxmXjDuUeRqCZoxT1Hspby8hx4o7F35Xeqfqj_G8YOCn1-J6xZY2Z6NXAvHcOEg4ZHk9GMqJ8vvbhFxC57QcQdjdkYW7H0fsf5_pPaMaw3M5iXszEIsgNeKPjBlcVkPZYxbUVYvXRTflcCHLnKFc8wP'
-                },
-                data : data
-            };
+        let data = JSON.stringify({
+        text: food_item,
+        });
 
-            const response = await axios.request(config)
+        let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "https://vtpm0rc0-8000.usw3.devtunnels.ms/hint",
+        headers: {
+            "Content-Type": "application/json",
+            Cookie:
+            ".Tunnels.Relay.WebForwarding.Cookies=CfDJ8E0FHi1JCVNKrny-ARCYWxOqACAvGFdwrTCwyPajfmqg1fZsc6k3yvP0bCuuuJhJ-2tJj2wyaOkalm7cmr4k-mBi4GX8ynU4d5d5eS2n4uTbPhUwH5oQUuldsTq06S4Ow3hHml1DRryTYCa4ekQAz_wSL4r_atEagxa9a_rLi0fwJ6R8oPFfcs-UE4lytAcpQOXlw6TfA-6078cbrqTLXEu0wcsijKxMt7fG_ExZHerJMR8uHZIWTr8_ysGtQsGivzrmidCkf5GjKiI87Ov_F1jRAGfm3VGDLpLtK5romR3OAqkYJDIoQT6WCuq8T7_exgvboQfOki0yd_BiOFB-LdYjw_8lYiUfz47wFV46-1sxJUGQMj7HOP0ME4lNnS4bny8TVCs6koaKHtJ2xRO8RBUW4eFsBykc2QTOnIrtpVTWDOd8VmpBslp3oSsMIt5ePobW2BAjvUYS6rzpJmsP9mGXqXiwjHzKym_qrv0F1b5z--frgYPJGogewd7y5N724dJmI7WRke2WFb_MwDKMLvU3xWE7kRGjt1nAisFSCbGtPwgl0GbYLduHCbiD9vr-5r6tguvTOZ0OUX1kQuc7c42p9h-Si05oxB3n3tdIIkxrd-nPM1KJ8b8NN2BTqFpOQsuJpGy15-KqjikXuivYuvR2Ra4fvJdViY4b-dIPxCPEqyPW0kwoftcO4tN_nUgMOamVh8_Bq4ao3ceUFwsCOAoy6DEqrb-kwxzu6DK_5e-Fylkd5Q-Ho3r5D8H8iY9AjLlSyG6nOmIQuhLPOKB5Q8UMCTlpxNGm0MtX5D6czAx-w7JF_Qlta2eg-2zTevqPB-jIiqG3ST1PbHtb_7olsrCtDbGWmGtxLt0M6uxvL45L-_lU4KX3CUuuzlbZbMJqsHnFFvXunfN5OMjFllGASWFbari9A8dcUQQYZiyfNP_z",
+        },
+        data: data,
+        };
 
-            hintText = response.data
-        }
-        catch (error) {
-            hintText = error
-        }
-        status = DONE
+        axios
+        .request(config)
+        .then((response) => {
+            hintText = response.data.value;
+            status = DONE
+            console.log(JSON.stringify(response.data.value));
+        })
+        .catch((error) => {
+            hintText = "Error";
+            status = DONE
+            console.log(error);
+        });
+        
     }
 </script>
 
@@ -44,7 +52,7 @@
             <span class="loading loading-ring loading-lg"></span>
         </div>
     {:else if status === DONE}
-        {hintText.setup}
+        {hintText}
     {:else}
         <div class="text-center">
             <button on:click={getHint} class="mt-4 border border-r-2 border-b-2 border-blue-300 hover:bg-blue-300 hover:text-white text-blue-500 p-2">Generate Hint</button>
@@ -53,4 +61,6 @@
     {/if}
     
 </h1>
+
+
 
