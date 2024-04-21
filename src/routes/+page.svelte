@@ -2,8 +2,17 @@
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
     import fuzzysort from 'fuzzysort'
     import { Svroller } from 'svrollbar'
+    import { onMount } from "svelte";
     
     export let data;
+
+    let foodguess = {}
+
+    onMount(() => {
+        let num = Math.floor(data.foods.length * Math.random());
+        foodguess = data.foods[num];
+        console.log(foodguess);
+    })
 
     let intervalID = setInterval(updateTime, 1000);
 
@@ -37,12 +46,10 @@
     }
 
     let inputValue = ''
-    console.log(data.foods)
     let results = ""
 
     // call fuzzy sort every time it's clicked
     function handleKeyPress() {
-        console.log("pressed")
         results = fuzzysort.go(inputValue, data.foods, {key:'name'})
     }
     
@@ -75,10 +82,8 @@
         // Get name of food
         let food_name = e.target.innerHTML
         let food_index = food_to_index.indexOf(food_name)
-        console.log(data.food)
         let food_info = data.foods[food_index]
         guesses = [food_info, ...guesses]
-        console.log("GUESSES: " + guesses)
     }
 
 
@@ -112,10 +117,12 @@
         {/each}
     </Svroller>
     </div>
+
+    <NutritionalLabel nutritionData={foodguess} />
     
     {#if guesses.length > 0}
         {#each guesses as g}    
-            <NutritionalLabel nutritionData={g}/>
+            <NutritionalLabel nutritionData={g} defaultData={foodguess} />
         {/each}
     {/if}
 

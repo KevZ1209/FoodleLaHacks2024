@@ -4,11 +4,11 @@
     export let real;
 </script>
 
-{#if guess > real}
+{#if parseFloat(guess) > parseFloat(real)}
 	<ArrowDown size={16} class="inline"/>
-{:else if guess < real}
+{:else if parseFloat(guess) < parseFloat(real)}
     <ArrowUp size={16} class="inline"/>
-{:else if guess == real}
+{:else if parseFloat(guess) == parseFloat(real)}
     <Check size={16} class="inline"/>
 {/if}
 
