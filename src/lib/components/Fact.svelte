@@ -22,6 +22,8 @@
                 event.target.style.backgroundColor = 'lightgreen';
             } else {
                 event.target.style.backgroundColor = 'lightcoral';
+                const correctOption = document.getElementById(`option-${allAnswers.findIndex(ans => ans === nutritionData.fact)}`);
+                correctOption.style.backgroundColor = 'lightgreen';
             }
         }
     }
