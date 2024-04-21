@@ -1,12 +1,18 @@
 <script>
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
+    import Reveal from "../lib/components/Reveal.svelte";
     import fuzzysort from 'fuzzysort'
     import { Svroller } from 'svrollbar'
     import { onMount } from "svelte";
     
     export let data;
+    const MAX_GUESSES = 5;
+    const WIN = 0
+    const LOSE = 1
 
     let foodguess = {}
+    
+    let status = 2
 
     onMount(() => {
         let num = Math.floor(data.foods.length * Math.random());
@@ -84,9 +90,10 @@
         let food_index = food_to_index.indexOf(food_name)
         let food_info = data.foods[food_index]
         guesses = [food_info, ...guesses]
+        if (guesses >= MAX_GUESSES) {
+            
+        }
     }
-
-
 
 </script>
 
@@ -110,13 +117,15 @@
 
     </div>
     
-    <div class="sm:w-2/3 bg-white border border-black mt-1">
+    <div class="sm:w-2/3 bg-white border-t border-l border-r-4 border-b-4 border-black mt-1">
     <Svroller width="100%">
         {#each displayChoices(results) as food_choice}
             <p class="uppercase text-xl p-1 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
         {/each}
     </Svroller>
     </div>
+
+    <Reveal answer={foodguess["name"]}/>
 
     <NutritionalLabel nutritionData={foodguess} />
     

@@ -5,11 +5,11 @@
 </script>
 
 {#if parseFloat(guess) > parseFloat(real)}
-	<ArrowDown size={16} class="inline"/>
+	<ArrowDown size={16} class="inline" color="red"/>
 {:else if parseFloat(guess) < parseFloat(real)}
-    <ArrowUp size={16} class="inline"/>
+    <ArrowUp size={16} class="inline" color="blue"/>
 {:else if parseFloat(guess) == parseFloat(real)}
-    <Check size={16} class="inline"/>
+    <Check size={16} class="inline" color="green"/>
 {/if}
 
 
