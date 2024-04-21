@@ -5,30 +5,33 @@
 
     function className(name) {
         let range = 10;
-        const arr = ["calories", "sodium", "size", "cholesterol", "potassium"]
-        const arr2 = ["fat", "sat_fat", "trans_fat", "carbs", "sugar", "protein"]
+        const arr = ["calories", "sodium", "cholesterol", "potassium"];
+        const arr2 = ["fat", "sat_fat", "trans_fat", "carbs", "sugar", "protein"];
         if (arr.includes(name)) {
             range = 50;
         } 
         else if (arr2.includes(name)) {
             range = 5;
         }
-
-        let ans = "m-1"
+        console.log(defaultData);
+        let ans = "m-1";
         if (parseFloat(defaultData[name]) == parseFloat(nutritionData[name])) {
-            ans += " border-2 border-green-500"
+            ans += " border-2 border-green-500";
         }
-        else if (parseFloat(defaultData[name]) - parseFloat(nutritionData[name]) < range && defaultData[name] - nutritionData[name] > range) {
-            ans += " border-2 border-yellow-500"
+        else if (parseFloat(defaultData[name]) - parseFloat(nutritionData[name]) < range && parseFloat(defaultData[name]) - parseFloat(nutritionData[name]) < range) {
+            ans += " border-2 border-yellow-500";
         }
         return ans;        
     }
+
+    console.log("hello")
 
     const VITAMIN_A_MAX = 3000;
     const VITAMIN_B_MAX = 2.4;
     const VITAMIN_C_MAX = 90;
     const VITAMIN_D_MAX = 600;
     const VITAMIN_E_MAX = 15;
+
 
 </script>
 

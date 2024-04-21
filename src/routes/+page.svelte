@@ -1,12 +1,12 @@
 <script>
     import NutritionalLabel from "../lib/components/NutritionalLabel.svelte";
-    import fuzzysort from 'fuzzysort'
-    import { Svroller } from 'svrollbar'
+    import fuzzysort from 'fuzzysort';
+    import { Svroller } from 'svrollbar';
     import { onMount } from "svelte";
     
     export let data;
 
-    let foodguess = {}
+    let foodguess = {};
 
     onMount(() => {
         let num = Math.floor(data.foods.length * Math.random());
@@ -18,10 +18,10 @@
 
     let totalSecs = 0
     function updateTime() {
-        totalSecs += 1
+        totalSecs += 1;
     }
 
-    let guesses = []
+    let guesses = [];
 
     function convertTime(secs) {
         const minutes = Math.floor(secs / 60);
@@ -45,45 +45,45 @@
 
     }
 
-    let inputValue = ''
-    let results = ""
+    let inputValue = '';
+    let results = "";
 
     // call fuzzy sort every time it's clicked
     function handleKeyPress() {
-        results = fuzzysort.go(inputValue, data.foods, {key:'name'})
+        results = fuzzysort.go(inputValue, data.foods, {key:'name'});
     }
     
     // returns a list of fuzzy sort names
     function displayChoices(d) {
-        let choices = []
+        let choices = [];
 
         // if input is empty, display all foods...
         if (inputValue == "") {
             for (let i = 0; i < data.foods.length; i++) {
-                choices.push(data.foods[i].name)
+                choices.push(data.foods[i].name);
             }   
         }
         
         else if (d.length > 0) {
             for (let i = 0; i < d.length; i++) {
-                choices.push(d[i]["target"])
+                choices.push(d[i]["target"]);
             }
         }
         return choices;
     }
 
     // Create array that maps food to index
-    let food_to_index = []
+    let food_to_index = [];
     for (let i=0; i < data.foods.length; i++) {
-        food_to_index.push(data.foods[i]["name"])
+        food_to_index.push(data.foods[i]["name"]);
     }
 
     function handleClickFood(e) {
         // Get name of food
-        let food_name = e.target.innerHTML
-        let food_index = food_to_index.indexOf(food_name)
-        let food_info = data.foods[food_index]
-        guesses = [food_info, ...guesses]
+        let food_name = e.target.innerHTML;
+        let food_index = food_to_index.indexOf(food_name);
+        let food_info = data.foods[food_index];
+        guesses = [food_info, ...guesses];
     }
 
 
