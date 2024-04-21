@@ -14,24 +14,9 @@
 
     async function getHint() {
         status = LOADING
-        let data = JSON.stringify({
-        text: food_item,
-        });
-
-        let config = {
-        method: "post",
-        maxBodyLength: Infinity,
-        url: "https://vtpm0rc0-8000.usw3.devtunnels.ms/hint",
-        headers: {
-            "Content-Type": "application/json",
-            Cookie:
-            ".Tunnels.Relay.WebForwarding.Cookies=CfDJ8E0FHi1JCVNKrny-ARCYWxOqACAvGFdwrTCwyPajfmqg1fZsc6k3yvP0bCuuuJhJ-2tJj2wyaOkalm7cmr4k-mBi4GX8ynU4d5d5eS2n4uTbPhUwH5oQUuldsTq06S4Ow3hHml1DRryTYCa4ekQAz_wSL4r_atEagxa9a_rLi0fwJ6R8oPFfcs-UE4lytAcpQOXlw6TfA-6078cbrqTLXEu0wcsijKxMt7fG_ExZHerJMR8uHZIWTr8_ysGtQsGivzrmidCkf5GjKiI87Ov_F1jRAGfm3VGDLpLtK5romR3OAqkYJDIoQT6WCuq8T7_exgvboQfOki0yd_BiOFB-LdYjw_8lYiUfz47wFV46-1sxJUGQMj7HOP0ME4lNnS4bny8TVCs6koaKHtJ2xRO8RBUW4eFsBykc2QTOnIrtpVTWDOd8VmpBslp3oSsMIt5ePobW2BAjvUYS6rzpJmsP9mGXqXiwjHzKym_qrv0F1b5z--frgYPJGogewd7y5N724dJmI7WRke2WFb_MwDKMLvU3xWE7kRGjt1nAisFSCbGtPwgl0GbYLduHCbiD9vr-5r6tguvTOZ0OUX1kQuc7c42p9h-Si05oxB3n3tdIIkxrd-nPM1KJ8b8NN2BTqFpOQsuJpGy15-KqjikXuivYuvR2Ra4fvJdViY4b-dIPxCPEqyPW0kwoftcO4tN_nUgMOamVh8_Bq4ao3ceUFwsCOAoy6DEqrb-kwxzu6DK_5e-Fylkd5Q-Ho3r5D8H8iY9AjLlSyG6nOmIQuhLPOKB5Q8UMCTlpxNGm0MtX5D6czAx-w7JF_Qlta2eg-2zTevqPB-jIiqG3ST1PbHtb_7olsrCtDbGWmGtxLt0M6uxvL45L-_lU4KX3CUuuzlbZbMJqsHnFFvXunfN5OMjFllGASWFbari9A8dcUQQYZiyfNP_z",
-        },
-        data: data,
-        };
 
         axios
-        .request(config)
+        .post("https://vtpm0rc0-8000.usw3.devtunnels.ms/hint", {text: food_item})
         .then((response) => {
             hintText = response.data.value;
             status = DONE
