@@ -132,7 +132,7 @@
 
     </div>
     <div class="flex gap-4 flex-wrap md:flex-nowrap">
-        <div class="md:w-1/2 w-full bg-white max-h-52 border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3">
+        <div class="md:w-3/4 w-full bg-white max-h-52 border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3">
         <Svroller width="100%" height="100%">
             {#each displayChoices(results) as food_choice}
                 <p class="uppercase text-xl p-1 ps-3 hover:bg-slate-200 w-full" on:click={handleClickFood}>{food_choice}</p>
@@ -140,12 +140,12 @@
         </Svroller>
         </div>
 
-        <div class="p-3 md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3 text-xl">
+        <!-- <div class="p-3 md:w-1/3 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3 text-xl">
             AI Hint
             <HelpfulHint food_item={foodguess["name"]}/>
-        </div>
+        </div> -->
 
-        <div class="p-3 md:w-1/6 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3 text-xl">
+        <div class="p-3 md:w-1/4 w-full bg-white border-t-2 border-l-2 border-r-4 border-b-4 border-black mt-3 text-xl">
             Guesses:
             <h1 class="text-7xl jersey-10-regular text-center">
                 {MAX_GUESSES - guesses.length}
@@ -173,12 +173,12 @@
         {/each}
     {/if}
 
-    {#if status == 0 || status == 1}
+    <!-- {#if status == 0 || status == 1}
         <Fact nutritionData={foodguess} />
         <Export nutritionData={foodguess} />
         <Import nutritionData={foodguess} />
         <Food nutritionData={foodguess} />
-    {/if}
+    {/if} -->
 
 
       
