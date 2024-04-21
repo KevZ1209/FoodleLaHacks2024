@@ -352,7 +352,7 @@ export const food_data = [
         'foods': ['Hot Pot','Pho','Udon'],
     },
     {
-        'name': 'M&Ms (Milk Chocolate)',
+        'name': 'MMs (Milk Chocolate)',
         'category': '',
         'size': '100',
         'calories': '492',
@@ -384,7 +384,7 @@ export const food_data = [
         'foods': ['Chocolate Tart','Chocolate Lava Cake','Brownies'],
     },
     {
-        'name': 'M&Ms (Peanut)',
+        'name': 'MMs (Peanut)',
         'category': '',
         'size': '100',
         'calories': '515',

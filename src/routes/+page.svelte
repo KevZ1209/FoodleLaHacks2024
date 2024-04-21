@@ -99,6 +99,9 @@
             let food_name = e.target.innerHTML
             let food_index = food_to_index.indexOf(food_name)
             let food_info = data.foods[food_index]
+            console.log(food_name)
+            console.log(food_index)
+            console.log(food_info)
             guesses = [food_info, ...guesses]
             if (guesses.length >= MAX_GUESSES) {
                 status = LOSE
