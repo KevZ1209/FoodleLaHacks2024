@@ -31,13 +31,46 @@
     const VITAMIN_D_MAX = 600;
     const VITAMIN_E_MAX = 15;
 
+    let percent = 0;
+
+    $: {
+        console.log(defaultData);
+        console.log(nutritionData);
+        let calp = 0.11 * (1 - Math.abs(parseFloat(nutritionData.calories)-parseFloat(defaultData.calories))/(parseFloat(nutritionData.calories)+parseFloat(defaultData.calories)+Math.PI/100));
+        let sodp = 0.10 * (1 - Math.abs(parseFloat(nutritionData.sodium)-parseFloat(defaultData.sodium))/(parseFloat(nutritionData.sodium)+parseFloat(defaultData.sodium)+Math.PI/100));
+        let sugp = 0.10 * (1 - Math.abs(parseFloat(nutritionData.sugar)-parseFloat(defaultData.sugar))/(parseFloat(nutritionData.sugar)+parseFloat(defaultData.sugar)+Math.PI/100));
+        let fatp = 0.15 * (1 - Math.abs(parseFloat(nutritionData.fat)-parseFloat(defaultData.fat))/(parseFloat(nutritionData.fat)+parseFloat(defaultData.fat)+Math.PI/100));
+        let protp = 0.15 * (1 - Math.abs(parseFloat(nutritionData.protein)-parseFloat(defaultData.protein))/(parseFloat(nutritionData.protein)+parseFloat(defaultData.protein)+Math.PI/100));
+        let carbp = 0.15 * (1 - Math.abs(parseFloat(nutritionData.carbs)-parseFloat(defaultData.carbs))/(parseFloat(nutritionData.carbs)+parseFloat(defaultData.carbs)+Math.PI/100));
+        let satp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.sat_fat)-parseFloat(defaultData.sat_fat))/(parseFloat(nutritionData.sat_fat)+parseFloat(defaultData.sat_fat)+Math.PI/100));
+        let transp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.trans_fat)-parseFloat(defaultData.trans_fat))/(parseFloat(nutritionData.trans_fat)+parseFloat(defaultData.trans_fat)+Math.PI/100));
+        let chop = 0.02 * (1 - Math.abs(parseFloat(nutritionData.cholesterol)-parseFloat(defaultData.cholesterol))/(parseFloat(nutritionData.cholesterol)+parseFloat(defaultData.cholesterol)+Math.PI/100));
+        let vitap = 0.02 * (1 - Math.abs(parseFloat(nutritionData.vitamin_a)-parseFloat(defaultData.vitamin_a))/(parseFloat(nutritionData.vitamin_a)+parseFloat(defaultData.vitamin_a)+Math.PI/100));
+        let vitbp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.vitamin_b)-parseFloat(defaultData.vitamin_b))/(parseFloat(nutritionData.vitamin_b)+parseFloat(defaultData.vitamin_b)+Math.PI/100));
+        let vitcp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.vitamin_c)-parseFloat(defaultData.vitamin_c))/(parseFloat(nutritionData.vitamin_c)+parseFloat(defaultData.vitamin_c)+Math.PI/100));
+        let vitdp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.vitamin_d)-parseFloat(defaultData.vitamin_d))/(parseFloat(nutritionData.vitamin_d)+parseFloat(defaultData.vitamin_d)+Math.PI/100));
+        let vitep = 0.02 * (1 - Math.abs(parseFloat(nutritionData.vitamin_e)-parseFloat(defaultData.vitamin_e))/(parseFloat(nutritionData.vitamin_e)+parseFloat(defaultData.vitamin_e)+Math.PI/100));
+        let fibp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.fiber)-parseFloat(defaultData.fiber))/(parseFloat(nutritionData.fiber)+parseFloat(defaultData.fiber)+Math.PI/100));
+        let potp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.potassium)-parseFloat(defaultData.potassium))/(parseFloat(nutritionData.potassium)+parseFloat(defaultData.potassium)+Math.PI/100));
+        let ironp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.iron)-parseFloat(defaultData.iron))/(parseFloat(nutritionData.iron)+parseFloat(defaultData.iron)+Math.PI/100));
+        let calcp = 0.02 * (1 - Math.abs(parseFloat(nutritionData.calcium)-parseFloat(defaultData.calcium))/(parseFloat(nutritionData.calcium)+parseFloat(defaultData.calcium)+Math.PI/100));
+        percent = calp+sodp+sugp+fatp+protp+carbp+satp+transp+chop+vitap+vitbp+vitcp+vitdp+vitep+fibp+potp+ironp+calcp;
+        percent *= 100;
+        percent = Math.round(percent);
+        console.log(calp)
+        console.log(percent)
+    }   
+
 </script>
 
 <div class="border-2 border-r-4  border-black mt-4 border-b-0 ps-3">
     {#if (defaultData.name == undefined)}
         <p class="text-black text-4xl">Mystery Food</p>  
     {:else}
-        <p class="text-black text-4xl">{nutritionData["name"]}</p>  
+        <div class="flex justify-between items-center">
+            <p class="text-black text-4xl">{nutritionData["name"]}</p>
+            <p class="text-black text-4xl pe-2">{percent}%</p>
+        </div>  
     {/if}
 </div>
 <div class="border-2 border-black border-r-4 border-b-4">
@@ -134,7 +167,7 @@
             </div>
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("iron")}"> -->
             <div class="flex justify-between items-center ps-2 pe-2}">
-                <p class="mr-2">Fiber:</p>
+                <p class="mr-2">Iron:</p>
                 <p>{nutritionData.iron}mg<Arrow guess={nutritionData.iron} real={defaultData.iron} /></p>
             </div>
             <!-- <div class="flex justify-between items-center ps-2 pe-2 class={className("calcium")}"> -->
