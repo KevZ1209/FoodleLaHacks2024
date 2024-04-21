@@ -31,21 +31,24 @@
     }
 </script>
 
-<h1 class="jersey-10-regular text-md">
+
     {#if status === LOADING}
+    <h1 class="jersey-10-regular text-md">
         <div class="text-center">
-            <span class="loading loading-ring loading-lg"></span>
+            <span class="loading loading-ring loading-lg text-blue-400"></span>
         </div>
+    </h1>
     {:else if status === DONE}
         {hintText}
     {:else}
+    <h1 class="jersey-10-regular text-md">
         <div class="text-center">
             <button on:click={getHint} class="mt-4 border border-r-2 border-b-2 border-blue-300 hover:bg-blue-300 hover:text-white text-blue-500 p-2">Generate Hint</button>
         </div>    
-
+    </h1>
     {/if}
     
-</h1>
+
 
 
 
