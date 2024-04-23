@@ -65,7 +65,8 @@
 
 <div class="border-2 border-r-4  border-black mt-4 border-b-0 ps-3 bg-white">
     {#if (defaultData.name == undefined)}
-        <p class="text-black text-4xl">Mystery Food</p>  
+        <p class="text-black text-4xl">Mystery Food</p>
+        <p class="absolute text-sm">(serving size standardized to 100g)</p>  
     {:else}
         <div class="flex justify-between items-center">
             <p class="text-black text-4xl">{nutritionData["name"]}</p>
