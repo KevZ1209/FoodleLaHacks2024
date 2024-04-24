@@ -63,7 +63,7 @@
 
 </script>
 
-<div class="border-2 border-r-4  border-black mt-4 border-b-0 ps-3 bg-white">
+<div class="border-2 border-r-4 bg-white border-black mt-4 border-b-0 ps-3 bg-white">
     {#if (defaultData.name == undefined)}
         <p class="text-black text-4xl">Mystery Food</p>
         <p class="absolute text-sm">(serving size standardized to 100g)</p>  
@@ -74,7 +74,7 @@
         </div>  
     {/if}
 </div>
-<div class="border-2 border-black border-r-4 border-b-4 bg-white p-5">
+<div class="border-2 bg-white border-black border-r-4 border-b-4 bg-white p-5">
     <div class="grid grid-cols-3 gap-2 text-xl text-center mb-2">
         <div>
         <!-- <div class={className("calories")}> -->

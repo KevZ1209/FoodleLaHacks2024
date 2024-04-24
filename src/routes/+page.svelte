@@ -139,10 +139,6 @@
             let food_info = chosenFoods[food_index]
             console.log("food info is " + JSON.stringify(food_info))
             guesses = [food_info, ...guesses]
-
-            console.log("guesses" + guesses)
-
-            
             
             if (food_name === foodguess.name) {
                 clearInterval(intervalID)
